@@ -2,13 +2,6 @@ var l = function (string) {
     return string.toLocaleString();
 };
 
-var systemLabelColor = "171717";
-var severityLabels = {
-    "1192FC": "investigating",
-    "FFA500": "degraded performance",
-    "FF4D4D": "major outage"
-};
-
 function render() {
 
     var endpoints = {
@@ -32,7 +25,7 @@ function render() {
     var systems = [];
 
     labels.forEach(function (label) {
-        if (label.color == systemLabelColor) {
+        if (label.color == config.systemLabel) {
             systems.push({"name": label.name, "status": "operational"});
         }
     });
@@ -49,9 +42,9 @@ function render() {
         issue.updates = [];
         issue.created_at = moment.tz(issue.created_at, moment.tz.guess()).format('LLLL');
         issue.labels.forEach(function (label) {
-            if (severityLabels[label.color] != undefined) {
-                issue.severity = severityLabels[label.color];
-            } else if (label.color == systemLabelColor) {
+            if (config.severityLabels[label.color] != undefined) {
+                issue.severity = config.severityLabels[label.color];
+            } else if (label.color == config.systemLabel) {
                 issue.affectedSystems.push(label.name);
             }
         });

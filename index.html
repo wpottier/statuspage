@@ -97,7 +97,17 @@
 <script src="script.js"></script>
 <script type="text/javascript">
 
-  var config = {"repo": "wpottier/statuspage", "collaborators": ['wpottier'], "v": "1.0alpha"};
+  var config = {
+    'repo': 'wpottier/statuspage',
+    'collaborators': ['wpottier'],
+    'v': '1.0alpha',
+    'systemLabel': '171717',
+    'severityLabels': {
+      '1192FC': 'investigating',
+      'FFA500': 'degraded performance',
+      'FF4D4D': 'major outage'
+    }
+  };
 
   render();
   setInterval(render, 60000);
